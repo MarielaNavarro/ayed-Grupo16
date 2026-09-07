@@ -89,14 +89,14 @@ Detalle de Ítem: Búsqueda por ID numérico o por Título de la canción, mostr
 
 ## Estructura del repositorio 
 
- ###### esqueleto/
+###### esqueleto/
 ###### ├── data/
 ###### │   └── canciones.csv          # Dataset en texto/CSV
 ###### ├── docs/
-###### │   ├── INFORME.md             # Justificaciones técnicas y análisis de tipos
-###### │   ├── DECLARACION_IA.md      # Registro de uso de herramientas de IA
-###### │   ├── GUIA_PASO_A_PASO.md    # Guía didáctica explicada línea por línea
-###### │   └── CHECKLIST_ENTREGA_1.md # Pasos finales para entrega
+###### │   ├── INFORME.md            
+###### │   ├── DECLARACION_IA.md     
+###### │   ├── PROTOCOLO.md  
+###### │
 ###### ├── src/
 ###### │   ├── dominio/
 ###### │   │   └── cancion.py         # Modelo de dominio de la entidad Cancion
