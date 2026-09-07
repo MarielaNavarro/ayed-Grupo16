@@ -79,7 +79,7 @@ Clase Cancion (@dataclass):
 
 Justificación técnica: Las instancias de clases personalizadas en Python son mutables por defecto. Esto permite que en entregas futuras se puedan actualizar atributos del estado de una canción (por ejemplo, contador de reproducciones, calificación o estado de favoritos) sin necesidad de recrear el objeto completo.
 
-### 3. Registro de Operaciones Implementadas (E1)
+#### 3. Registro de Operaciones Implementadas (E1)
 
 Carga desde CSV: Uso de csv.DictReader con lectura robusta de rutas mediante pathlib.
 
