@@ -1,32 +1,30 @@
 # TP integrador — Algoritmos y Estructuras de Datos 
 
-Grupo 16
+##Grupo 16
 
 
-Nombre: Navarro Mariela
- usuarios de GitHub: MarielaNavarro 
-Mail: marunavarro1991@gmail.com
+###Nombre: Navarro Mariela
+###usuarios de GitHub: MarielaNavarro 
+###Mail: marunavarro1991@gmail.com
 
-Nombre: Amarilla Hernán
-usuarios de GitHub: hernanamarilla
-Mail: hernan.amarilla07@gmail.com
+###Nombre: Amarilla Hernán
+###usuarios de GitHub: hernanamarilla
+###Mail: hernan.amarilla07@gmail.com
 
-Nombre: Giuliana Celeste Plasencia Cerna
-Mail: cele_1298@hotmail.com
+###Nombre: Giuliana Celeste Plasencia Cerna
+###Mail: cele_1298@hotmail.com
 
 
-TEMA: Música
-URL:https://github.com/MarielaNavarro/ayed-Grupo16
+###TEMA: Música
+###URL:https://github.com/MarielaNavarro/ayed-Grupo16
  
 
 
-Informe Técnico — Entrega 1
+##Informe Técnico — Entrega 1
 
-Tema: Biblioteca Musical
+###Tema: Biblioteca Musical
 
-Materia: Algoritmos y Estructuras de Datos (C2 2026)
-
-1. Justificación del Dominio y Dataset
+#####1. Justificación del Dominio y Dataset
 
 Se eligió la Biblioteca Musical como tema del catálogo. Cada registro del archivo data/canciones.csv representa una pista musical con sus metadatos principales.
 
@@ -49,7 +47,7 @@ anio (int): Año de publicación.
 
 duracion_seg (int): Duración en segundos.
 
-2. Análisis de Tipos de Datos: Mutabilidad e Inmutabilidad
+#####2. Análisis de Tipos de Datos: Mutabilidad e Inmutabilidad
 
 En Python, la distinción entre tipos mutables (que pueden cambiar su contenido en memoria sin cambiar su dirección/identidad) e inmutables (cuyo valor no puede alterarse una vez creado) es fundamental para el diseño del software y el manejo de memoria.
 
@@ -81,7 +79,7 @@ Clase Cancion (@dataclass):
 
 Justificación técnica: Las instancias de clases personalizadas en Python son mutables por defecto. Esto permite que en entregas futuras se puedan actualizar atributos del estado de una canción (por ejemplo, contador de reproducciones, calificación o estado de favoritos) sin necesidad de recrear el objeto completo.
 
-3. Registro de Operaciones Implementadas (E1)
+###3. Registro de Operaciones Implementadas (E1)
 
 Carga desde CSV: Uso de csv.DictReader con lectura robusta de rutas mediante pathlib.
 
@@ -89,7 +87,8 @@ Listado de Catálogo: Recorrido iterativo imprimiendo una tabla en consola con f
 
 Detalle de Ítem: Búsqueda por ID numérico o por Título de la canción, mostrando una ficha gráfica con marco unicode.
 
-Estructura del repositorio 
+##Estructura del repositorio 
+
 esqueleto/
 ├── data/
 │   └── canciones.csv          # Dataset en texto/CSV
@@ -104,7 +103,7 @@ esqueleto/
 │   └── main.py                # Punto de entrada y CLI
 └── README.md                  # Presentación principal
 
-¿Cómo Ejecutar la Entrega 1?
+##¿Cómo Ejecutar la Entrega 1?
 
 Desde la carpeta principal esqueleto/, ejecutar en consola:
 
