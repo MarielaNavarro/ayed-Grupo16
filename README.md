@@ -88,3 +88,23 @@ Carga desde CSV: Uso de csv.DictReader con lectura robusta de rutas mediante pat
 Listado de Catálogo: Recorrido iterativo imprimiendo una tabla en consola con formato de columnas de ancho fijo y conversión de segundos a minutos (MM:SS).
 
 Detalle de Ítem: Búsqueda por ID numérico o por Título de la canción, mostrando una ficha gráfica con marco unicode.
+
+Estructura del repositorio 
+esqueleto/
+├── data/
+│   └── canciones.csv          # Dataset en texto/CSV
+├── docs/
+│   ├── INFORME.md             # Justificaciones técnicas y análisis de tipos
+│   ├── DECLARACION_IA.md      # Registro de uso de herramientas de IA
+│   ├── GUIA_PASO_A_PASO.md    # Guía didáctica explicada línea por línea
+│   └── CHECKLIST_ENTREGA_1.md # Pasos finales para entrega
+├── src/
+│   ├── dominio/
+│   │   └── cancion.py         # Modelo de dominio de la entidad Cancion
+│   └── main.py                # Punto de entrada y CLI
+└── README.md                  # Presentación principal
+
+¿Cómo Ejecutar la Entrega 1?
+
+Desde la carpeta principal esqueleto/, ejecutar en consola:
+
