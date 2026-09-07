@@ -1,91 +1,99 @@
-import os
-import sys
+import csv                  # Módulo para leer archivos CSV
+from pathlib import Path    # Manejo de rutas del sistema operativo
+from dominio.cancion import Cancion  # Clase de dominio Cancion
 
-# Permitir ejecuciones directas agregando el directorio raíz al PATH
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+def cargar_biblioteca_desde_csv(ruta_archivo: Path) -> list:
+    """Abre el archivo CSV y carga las canciones en una lista."""
+    biblioteca = []
 
-from src.persistencia.manejador_csv import ManejadorCSV
+    if not ruta_archivo.exists():
+        print(f"Error: No se encontró el archivo en {ruta_archivo}")
+        return biblioteca
 
-# Ruta por defecto al archivo CSV de canciones
-RUTA_DATASET = os.path.join("esqueleto", "data", "canciones.csv")
+    with open(ruta_archivo, mode="r", encoding="utf-8") as archivo:
+        lector = csv.DictReader(archivo)
 
+        for fila in lector:
+            cancion = Cancion(
+                id=int(fila["id"]),
+                titulo=fila["titulo"],
+                artista=fila["artista"],
+                album=fila["album"],
+                genero=fila["genero"],
+                anio=int(fila["anio"]),
+                duracion_seg=int(fila["duracion_seg"])
+            )
+            biblioteca.append(cancion)
 
-def mostrar_menu():
-    print("\n" + "=" * 45)
-    print("      BIBLIOTECA MUSICAL - MENÚ PRINCIPAL")
-    print("=" * 45)
-    print("1. Listar catálogo de canciones")
-    print("2. Ver detalle de una canción")
-    print("3. Salir")
-    print("=" * 45)
+    return biblioteca
 
-
-def listar_catalogo(catalogo):
-    if not catalogo:
-        print("\n[!] El catálogo está vacío.")
+def listar_catalogo(biblioteca: list) -> None:
+    """Imprime el catálogo completo en formato de tabla."""
+    if not biblioteca:
+        print("\nLa biblioteca está vacía.")
         return
 
-    print("\n--- CATÁLOGO DE CANCIONES ---")
-    for cancion in catalogo:
-        print(cancion.mostrar_resumen())
+    print("\n" + "=" * 70)
+    print(f"{'N°':<4} {'Título':<22} {'Artista':<18} {'Género':<12} {'Duración':<8}")
+    print("=" * 70)
 
+    for tema in biblioteca:
+        print(f"{tema.id:<4} {tema.titulo:<22} {tema.artista:<18} {tema.genero:<12} {tema.formatear_duracion():<8}")
 
-def ver_detalle(catalogo):
-    if not catalogo:
-        print("\n[!] El catálogo está vacío.")
+    print("=" * 70)
+
+def ver_detalle_cancion(biblioteca: list) -> None:
+    """Busca una canción por N° de ID o Título."""
+    busqueda = input("\nIngrese el N° o Título de la canción a consultar: ").strip()
+
+    if not busqueda:
+        print("Búsqueda cancelada: entrada vacía.")
         return
 
-    try:
-        id_buscar = int(input("\nIngrese el ID de la canción: "))
-        encontrado = False
+    encontrada = None
 
-        for cancion in catalogo:
-            if cancion.id == id_buscar:
-                print("\n" + "-" * 35)
-                print(f"ID:                 #{cancion.id:03d}")
-                print(f"Título:             {cancion.titulo}")
-                print(f"Artista:            {cancion.artista}")
-                print(f"Álbum:              {cancion.album}")
-                print(f"Género:             {cancion.genero}")
-                print(
-                    f"Duración:           {cancion.duracion_segundos // 60}:{cancion.duracion_segundos % 60:02d} min"
-                )
-                print(f"Año:                {cancion.anio}")
-                print(f"IDs de versiones:   {cancion.versiones}")
-                print("-" * 35)
-                encontrado = True
-                break
+    for tema in biblioteca:
+        if busqueda.isdigit() and tema.id == int(busqueda):
+            encontrada = tema
+            break
+        elif tema.titulo.lower() == busqueda.lower():
+            encontrada = tema
+            break
 
-        if not encontrado:
-            print(f"\n[!] No se encontró ninguna canción con el ID {id_buscar}.")
+    if encontrada:
+        print("\n" + encontrada.mostrar_ficha_detalle())
+    else:
+        print(f"No se encontró ninguna canción con el criterio: '{busqueda}'.")
 
-    except ValueError:
-        print("\n[Error] Debe ingresar un número entero válido.")
+def mostrar_menu() -> None:
+    print("\n╔══════════════════════════════════════════╗")
+    print("║     BIBLIOTECA MUSICAL - CLI (E1)        ║")
+    print("╠══════════════════════════════════════════╣")
+    print("║ 1. Listar canciones del catálogo         ║")
+    print("║ 2. Ver detalle de una canción            ║")
+    print("║ 3. Salir                                 ║")
+    print("╚══════════════════════════════════════════╝")
 
+def main() -> None:
+    directorio_actual = Path(__file__).parent
+    ruta_csv = directorio_actual.parent / "data" / "canciones.csv"
 
-def main():
-    print("Cargando catálogo musical...")
-    try:
-        catalogo = ManejadorCSV.cargar_catalogo(RUTA_DATASET)
-        print(f"¡Catálogo cargado con éxito! ({len(catalogo)} canciones)")
-    except Exception as e:
-        print(f"[Error al cargar CSV]: {e}")
-        catalogo = []
+    biblioteca_musical = cargar_biblioteca_desde_csv(ruta_csv)
+    print(f"Sistema iniciado. Se cargaron {len(biblioteca_musical)} canciones.")
 
     while True:
         mostrar_menu()
-        opcion = input("Seleccione una opción: ").strip()
+        opcion = input("Seleccione una opción (1-3): ").strip()
 
         if opcion == "1":
-            listar_catalogo(catalogo)
+            listar_catalogo(biblioteca_musical)
         elif opcion == "2":
-            ver_detalle(catalogo)
+            ver_detalle_cancion(biblioteca_musical)
         elif opcion == "3":
-            print("\n¡Gracias por usar la Biblioteca Musical! Saliendo...")
+            print("\n¡Gracias por utilizar la Biblioteca Musical!")
             break
         else:
-            print("\n[Opción inválida] Por favor, ingrese un número del 1 al 3.")
-
+            print("\nOpción inválida. Ingrese un número del 1 al 3.")
 
 if __name__ == "__main__":
     main()
