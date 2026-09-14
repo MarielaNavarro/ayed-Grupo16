@@ -12,6 +12,11 @@ class Cancion:
     genero: str         # Cadena inmutable con el género
     anio: int           # Entero inmutable con el año
     duracion_seg: int   # Entero con la duración en segundos
+    cancion_original: int = 0  # <--- Nuevo atributo
+
+    def es_version_derivada(self) -> bool:
+        """Devuelve True si la canción deriva de otra."""
+        return self.cancion_original != 0
 
     def formatear_duracion(self) -> str:
         """Convierte los segundos a formato MM:SS."""
