@@ -21,8 +21,9 @@ def cargar_biblioteca_desde_csv(ruta_archivo: Path) -> list:
                 album=fila["album"],
                 genero=fila["genero"],
                 anio=int(fila["anio"]),
-                duracion_seg=int(fila["duracion_seg"])
-            )
+                duracion_seg=int(fila["duracion_seg"]),
+                cancion_original=int(fila.get("cancion_original", 0))  # <--- Asignación
+                        )
             biblioteca.append(cancion)
 
     return biblioteca
