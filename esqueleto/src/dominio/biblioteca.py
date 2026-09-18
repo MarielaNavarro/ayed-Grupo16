@@ -7,7 +7,57 @@ class Biblioteca:
     Clase del dominio que encapsula la colección de canciones y la lógica de negocio
     asociada (carga desde CSV, listado y búsquedas). Esto evita que main.py concentre la lógica.
     """
-    
+    def cargar_versiones_desde_csv(self, ruta_archivo: Path) -> None:
+        """
+        Lee el archivo de versiones (versiones.csv) y construye un diccionario interno
+        donde la clave es el ID de la canción original y el valor es una lista 
+        con los IDs de sus versiones directas.
+        """
+        self.diccionario_versiones = {}  # Inicializamos el diccionario como atributo de la clase.
+
+        if not ruta_archivo.exists():
+            print(f"Error: No se encontró el archivo de versiones en {ruta_archivo}")
+            return
+
+        with open(ruta_archivo, mode="r", encoding="utf-8") as archivo:
+            lector = csv.DictReader(archivo)
+            for fila in lector:
+                id_version = int(fila["cancion_id"])
+                id_original = int(fila["version_de_id"])
+                
+                # Agrupamos en el diccionario: a la canción original le sumamos su versión derivada.
+                if id_original not in self.diccionario_versiones:
+                    self.diccionario_versiones[id_original] = []
+                self.diccionario_versiones[id_original].append(id_version)
+
+    def versiones_directas(self, id_cancion: int) -> list:
+        """
+        Retorna una lista con los IDs de las versiones directas (covers/lives) de una canción.
+        """
+        # Si el diccionario no fue creado aún, retornamos vacío.
+        if not hasattr(self, 'diccionario_versiones'):
+            return []
+            
+        # Retorna la lista de versiones si la canción existe como clave, sino una lista vacía.
+        return self.diccionario_versiones.get(id_cancion, [])
+
+    def listar_todas_las_versiones(self, id_cancion: int) -> list:
+        """
+        FUNCIÓN RECURSIVA DEL DOMINIO (Ítem 2 de la E2):
+        Busca todas las versiones derivadas de una canción, y las versiones de esas versiones.
+        """
+        directas = self.versiones_directas(id_cancion)
+        
+        # CASO BASE: Si la canción no tiene versiones directas, cortamos la recursión devolviendo una lista vacía.
+        if not directas:
+            return []
+            
+        # CASO RECURSIVO: Si tiene versiones, copiamos la lista actual y buscamos recursivamente por cada una.
+        resultado = list(directas)
+        for version in directas:
+            resultado += self.listar_todas_las_versiones(version)
+            
+        return resultado
     def __init__(self):
         """Constructor de la clase: inicializa una lista vacía para almacenar las canciones."""
         self.canciones = []  # Lista interna que contendrá objetos de la clase Cancion.
