@@ -26,29 +26,29 @@ Cola (FIFO - First In, First Out): Representa la lista de reproducción en cola 
 
 +-------------------------------------------------------------------+
 |                            Biblioteca                             |
-|                        (Catálogo / Contenedor)                    |
+|                      (Catálogo / Contenedor)                      |
 +-------------------------------------------------------------------+
-| - canciones: list[Cancion]          <-- Colección Principal       |
-| - versiones_map: dict[int, list]    <-- Grafo de Versiones (E2)   |
+| - canciones: list[Cancion] <-- Colección Principal                |
+| - versiones_map: dict[int, list] <-- Grafo de Versiones (E2)      |
 +-------------------------------------------------------------------+
-| + cargar_desde_csv(ruta)                                          |
+| + cargar_desde_csv(ruta)                                         |
 | + cargar_versiones(ruta)                                          |
 | + buscar_por_id(id): Cancion                                      |
-| + obtener_versiones_derivadas(id): list  <-- Algoritmo Recursivo |
+| + obtener_versiones_derivadas(id): list <-- Algoritmo Recursivo   |
 +-------------------------------------------------------------------+
                                  |
                                  | 1..* contiene
                                  v
 +-------------------------------------------------------------------+
-|                              Cancion                              |
+|                             Cancion                               |
 +-------------------------------------------------------------------+
-| + id: int                   (Inmutable)                           |
-| + titulo: str               (Inmutable)                           |
-| + artista: str              (Inmutable)                           |
-| + album: str                (Inmutable)                           |
-| + genero: str               (Inmutable)                           |
-| + anio: int                 (Inmutable)                           |
-| + duracion_seg: int         (Mutable / Atributo)                  |
+| + id: int (Inmutable)                                             |
+| + titulo: str (Inmutable)                                         |
+| + artista: str (Inmutable)                                        |
+| + album: str (Inmutable)                                          |
+| + genero: str (Inmutable)                                         |
+| + anio: int (Inmutable)                                           |
+| + duracion_seg: int (Mutable / Atributo)                          |
 +-------------------------------------------------------------------+
 | + formatear_duracion(): str                                       |
 | + mostrar_ficha_detalle(): str                                    |
