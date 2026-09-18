@@ -1,7 +1,7 @@
 import csv                  # Módulo para leer archivos CSV
 from pathlib import Path    # Manejo de rutas del sistema operativo
 from dominio.cancion import Cancion  # Clase de dominio Cancion
-
+from dominio.biblioteca import Biblioteca #Clase de dominio Biblioteca
 def listar_catalogo(biblioteca: Biblioteca) -> None:
     """
     Función de interfaz de usuario: solicita el catálogo a la biblioteca
