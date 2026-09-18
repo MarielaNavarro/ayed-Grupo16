@@ -1,6 +1,6 @@
 import csv                  # Módulo para leer archivos CSV
 from pathlib import Path    # Manejo de rutas del sistema operativo
-from dominio.cancion import Cancion  # Clase de dominio Cancion
+from src.dominio.cancion import Cancion  # Clase de dominio Cancion
 
 def cargar_biblioteca_desde_csv(ruta_archivo: Path) -> list:
     """Abre el archivo CSV y carga las canciones en una lista."""
