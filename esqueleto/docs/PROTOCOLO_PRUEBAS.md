@@ -9,7 +9,7 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 | ID | Entrega | Acción (pasos en el CLI) | Datos | Resultado esperado | Resultado | Notas |
 | --- | --- | --- | --- | --- | --- | --- |
 | P01 | E1 | Arrancar el programa y listar catálogo | dataset de la cátedra | lista no vacía, sin traceback | exitoso | Al seleccionar la opción 1, lista los 67 registros del catálogo  |
-| P02 | E1 | Elegir un ítem inexistente | id = -1 | mensaje claro, el menú sigue |  |  |
+| P02 | E1 | Elegir un ítem inexistente | id = -1 | mensaje claro, el menú sigue | exitoso  | al presionar un numero distinto a al rango del 1 al 3 nos envía un mensaje "Opción inválida. Ingrese un número del 1 al 3."  |
 | P03 | E2 | Operación recursiva sobre un ítem con cadena | ver consigna §3.3 | imprime la cadena completa | Exitoso  Imprime la cadena completa de versiones derivadas.| Recorre  correctamente el archivo versiones.csv usando la función recursiva del dominio.  |
 | P04 | E2 | Operación recursiva sobre un ítem sin derivados |  | solo el ítem (caso base) | Exitoso  Devuelve lista vacía / caso base alcanzado.  | El caso base corta la recursión de forma limpia sin generar errores ni bucles infinitos. |
 | P05 | E3 | Agregar a la colección principal hasta el tope | equipo de 6 / equivalente | el séptimo falla con excepción propia |  |  |
