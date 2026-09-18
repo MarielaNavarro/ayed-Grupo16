@@ -24,6 +24,7 @@ Pila (LIFO - Last In, First Out): Representa un historial de reproducción o his
 
 Cola (FIFO - First In, First Out): Representa la lista de reproducción en cola (playqueue). Las canciones se encolan al final (enqueue) y se procesan/reproducen en el orden estricto de llegada desde el frente (dequeue).
 
+```text
 +-------------------------------------------------------------------+
 |                            Biblioteca                             |
 |                      (Catálogo / Contenedor)                      |
@@ -53,6 +54,7 @@ Cola (FIFO - First In, First Out): Representa la lista de reproducción en cola 
 | + formatear_duracion(): str                                       |
 | + mostrar_ficha_detalle(): str                                    |
 +-------------------------------------------------------------------+
+```
 
 
     [ Historial / Navegación ]            [ Queue de Reproducción ]
