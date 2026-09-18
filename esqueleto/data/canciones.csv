@@ -1,0 +1,68 @@
+id,titulo,artista,album,genero,anio,duracion_seg,cancion_original
+1,De Musica Ligera,Soda Stereo,Cancion Animal,Rock,1990,213,0
+2,Persiana Americana,Soda Stereo,Signos,Rock,1986,263,0
+3,En la Ciudad de la Furia,Soda Stereo,Doble Vida,Rock,1988,351,0
+4,Crimen,Gustavo Cerati,Ahí vamos,Rock,2006,239,0
+5,Adios,Gustavo Cerati,Fuerza Natural,Rock,2009,233,0
+6,Muchacha ojos de papel,Luis Alberto Spinetta,Almendra,Rock,1969,203,0
+7,Cantata de Puentes Amarillos,Luis Alberto Spinetta,Artaud,Rock,1973,557,0
+8,Rasguña las Piedras,Sui Generis,Confesiones de Invierno,Rock,1973,196,0
+9,Seminare,Seru Giran,La Grasa de las Capitales,Rock,1979,241,0
+10,Los Dinosaurios,Charly Garcia,Clics Modernos,Rock,1983,241,0
+11,Demoliendo Hoteles,Charly Garcia,Piano Bar,Rock,1984,151,0
+12,Jijiji,Patricio Rey y sus Redonditos de Ricota,Un Baion para el Ojo Idiota,Rock,1988,316,0
+13,Ji Ji Ji,Patricio Rey y sus Redonditos de Ricota,En Directo,Rock,1992,318,0
+14,La Bestia Pop,Patricio Rey y sus Redonditos de Ricota,Oktubre,Rock,1986,240,0
+15,Alfonsina y el mar,Mercedes Sosa,Mujeres Argentinas,Folklore,1969,298,1
+16,Gracias a la Vida,Mercedes Sosa,Hasta la Victoria,Folklore,1971,271,1
+17,La Balsa,Los Gatos,Los Gatos,Rock,1967,187,0
+18,El Extraño de Pelo Largo,Almendra,Almendra,Rock,1969,198,0
+19,Flaca,Andres Calamaro,Honestidad Brutal,Rock,1999,263,0
+20,Lamento Boliviano,Los Enanitos Verdes,Big Bang,Rock,1994,223,0
+21,La Guitarra,Los Autenticos Decadentes,Mi Enfermedad,Cumbia,1997,201,0
+22,Waka Waka,Shakira,Sale el Sol,Pop,2010,202,1
+23,Bzrp Music Sessions Vol. 52,Bizarrap,Sessions,Urbano,2022,201,0
+24,Bzrp Music Sessions Vol. 53,Bizarrap,Sessions,Urbano,2023,194,0
+25,Natacha,Wos,Oscuro Extasis,Urbano,2019,183,0
+26,Canguros,Wos,Tres Puntos Suspensivos,Urbano,2021,176,0
+27,Buenos Aires,Nathy Peluso,Calambre,Urbano,2020,198,0
+28,Despecha,Rosalia,Motomami,Pop,2022,157,0
+29,Titi Me Pregunto,Bad Bunny,Un Verano Sin Ti,Urbano,2022,243,0
+30,Anti-Hero,Taylor Swift,Midnights,Pop,2022,201,0
+31,Blank Space,Taylor Swift,1989,Pop,2014,231,0
+32,Bohemian Rhapsody,Queen,A Night at the Opera,Rock,1975,354,0
+33,Bohemian Rhapsody (Live Aid),Queen,Live Aid,Rock,1985,362,0
+34,Don't Stop Me Now,Queen,Jazz,Rock,1978,209,0
+35,Come Together,The Beatles,Abbey Road,Rock,1969,259,1
+36,Here Comes the Sun,The Beatles,Abbey Road,Rock,1969,185,0
+37,Get Lucky,Daft Punk,Random Access Memories,Electronica,2013,248,0
+38,One More Time,Daft Punk,Discovery,Electronica,2000,320,0
+39,Rolling in the Deep,Adele,21,Pop,2010,228,0
+40,Someone Like You,Adele,21,Pop,2011,285,0
+41,Do I Wanna Know,Arctic Monkeys,AM,Rock,2013,272,0
+42,505,Arctic Monkeys,Favourite Worst Nightmare,Rock,2007,214,0
+43,Blinding Lights,The Weeknd,After Hours,Pop,2019,200,0
+44,Levitating,Dua Lipa,Future Nostalgia,Pop,2020,203,0
+45,As It Was,Harry Styles,Harry's House,Pop,2022,167,0
+46,Smells Like Teen Spirit,Nirvana,Nevermind,Rock,1991,301,0
+47,Wonderwall,Oasis,What's the Story Morning Glory,Rock,1995,258,0
+48,Wonderwall (Live),Oasis,Familiar to Millions,Rock,2000,265,0
+49,Take On Me,a-ha,Hunting High and Low,Pop,1985,225,0
+50,Africa,Toto,Toto IV,Pop,1982,296,0
+51,Billie Jean,Michael Jackson,Thriller,Pop,1982,294,0
+52,Billie Jean (Remix),Michael Jackson,Thriller 40,Pop,2022,292,0
+53,Clocks,Coldplay,A Rush of Blood to the Head,Rock,2002,307,0
+54,Yellow,Coldplay,Parachutes,Rock,2000,269,0
+55,Creep,Radiohead,Pablo Honey,Rock,1992,238,0
+56,Karma Police,Radiohead,OK Computer,Rock,1997,261,0
+57,Vino Griego,Los Abuelos de la Nada,Vasos y Besos,Rock,1983,214,1
+58,Lunes Por La Madrugada,Los Abuelos de la Nada,Los Abuelos de la Nada,Rock,1982,241,1
+59,El Aguante,Divididos,Gol de Mujer,Rock,1998,245,0
+60,Que Ves,Divididos,Acariciando lo Aspero,Rock,1991,232,0
+61,Gracias a la Vida,Violeta Parra,Las Ultimas Composiciones,Folklore,1966,258,0
+62,De Musica Ligera (Unplugged),Soda Stereo,Comfort y Musica Para Volar,Rock,1996,221,0
+63,Flaca (En vivo),Andres Calamaro,Vivo,Rock,2000,270,0
+64,Creep (Live),Radiohead,The Astoria London,Rock,1994,245,0
+65,Yellow (Live),Coldplay,Live 2003,Rock,2003,280,0
+66,Blank Space (Acoustic),Taylor Swift,1989,Pop,2014,228,0
+67,Get Lucky (Daft Punk Remix),Daft Punk,Random Access Memories,Electronica,2013,248,0
