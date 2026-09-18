@@ -65,17 +65,20 @@ def main() -> None:
     Cumple estrictamente con la regla de la E2: solo inicializa componentes,
     muestra el menú en bucle y despacha las opciones elegidas. No contiene lógica de negocio.
     """
-    # Determinamos la ruta del directorio donde se ubica este archivo actual (src/).
+  # Determinamos la ruta del directorio actual donde se encuentra este script.
     directorio_actual = Path(__file__).parent
-    # Construimos la ruta hacia el archivo CSV dentro de la carpeta data/ (subiendo un nivel desde src/).
-    ruta_csv = directorio_actual.parent / "data" / "canciones.csv"
+    
+    # Construimos de forma segura las rutas hacia los archivos CSV en la carpeta 'data/'.
+    ruta_canciones_csv = directorio_actual.parent / "data" / "canciones.csv"
+    ruta_versiones_csv = directorio_actual.parent / "data" / "versiones.csv" # <--- NUEVO
 
-    # Instanciamos la clase del dominio que gestionará los datos de la música.
-    biblioteca = Biblioteca()
-    # Cargamos los datos del archivo CSV en la biblioteca.
-    biblioteca.cargar_desde_csv(ruta_csv)
-    # Informamos por consola la cantidad de elementos cargados exitosamente.
-    print(f"Sistema iniciado. Se cargaron {len(biblioteca.listar())} canciones.")
+    # Cargamos el listado invocando a los métodos de la Biblioteca.
+    biblioteca_musical = Biblioteca()
+    biblioteca_musical.cargar_desde_csv(ruta_canciones_csv)
+    biblioteca_musical.cargar_versiones_desde_csv(ruta_versiones_csv) # <--- NUEVO
+    
+    print(f"Sistema iniciado. Se cargaron {len(biblioteca_musical.listar())} canciones.")
+    # ... (el resto del while True queda exactamente igual)
 
     # Bucle infinito para mantener la aplicación ejecutándose hasta que el usuario elija salir.
     while True:
