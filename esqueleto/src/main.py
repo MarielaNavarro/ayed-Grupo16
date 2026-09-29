@@ -3,7 +3,23 @@ from pathlib import Path    # Manejo de rutas del sistema operativo
 from src.dominio.cancion import Cancion  # Clase de dominio Cancion
 from src.dominio.biblioteca import Biblioteca
 from src.excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError
+# Asegurate de tener estas lecturas y capturas en tu menú:
+try:
+    biblioteca.agregar(cancion)
+except ColeccionLlenaError as e:
+    print(f"No se pudo agregar: {e}")
 
+try:
+    cancion_previa = historial.deshacer()
+    print(f"Volviendo a reproducir: {cancion_previa}")
+except PilaVaciaError as e:
+    print(f"No hay canciones en el historial: {e}")
+
+try:
+    siguiente = cola_espera.reproducir_siguiente()
+    print(f"Sonando ahora: {siguiente}")
+except ColaVaciaError as e:
+    print(f"La cola de reproducción está vacía: {e}")
 def menu_coleccion(coleccion, pila_historial, cola_turnos):
     """
     Función interactiva para manipular las colecciones y estructuras del menú[cite: 1].
