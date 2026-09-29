@@ -1,7 +1,39 @@
 import csv                  # Módulo integrado de Python para leer y escribir archivos CSV.
 from pathlib import Path    # Módulo para el manejo seguro y multiplataforma de rutas de archivos.
 from src.dominio.cancion import Cancion  # Importamos la clase del dominio 'Cancion' desde su módulo correspondiente.
+from src.tads.lista_enlazada import ListaEnlazada
+from src.excepciones import ColeccionLlenaError
 
+class Biblioteca:
+    """
+    Colección principal del dominio de Música con límite de capacidad (tope)[cite: 1].
+    Utiliza internamente la estructura `ListaEnlazada` propia[cite: 1].
+    """
+    def __init__(self, tope=6):
+        # Lista enlazada propia para almacenar los objetos canción o títulos[cite: 1]
+        self._canciones = ListaEnlazada()
+        # Límite máximo de elementos permitido[cite: 1]
+        self._tope = tope
+
+    def agregar(self, cancion):
+        """
+        Agrega una nueva canción a la biblioteca/playlist[cite: 1].
+        Lanza `ColeccionLlenaError` si se alcanza el tope máximo[cite: 1].
+        """
+        if self._canciones.tamanio() >= self._tope:
+            raise ColeccionLlenaError(f"La playlist / biblioteca está llena (máximo {self._tope} canciones).")[cite: 1]
+        self._canciones.insertar_al_final(cancion)
+
+    def eliminar(self, cancion):
+        """Elimina una canción especificada de la biblioteca[cite: 1]."""
+        self._canciones.eliminar(cancion)
+
+    def listar(self):
+        """
+        Muestra todas las canciones de la biblioteca utilizando el iterador de ListaEnlazada[cite: 1].
+        """
+        for cancion in self._canciones:
+            print(f" - {cancion}")
 class Biblioteca:
     """
     Clase del dominio que encapsula la colección de canciones y la lógica de negocio
