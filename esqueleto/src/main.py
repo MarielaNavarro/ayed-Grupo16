@@ -2,7 +2,53 @@ import csv            # Módulo para leer archivos CSV
 from pathlib import Path    # Manejo de rutas del sistema operativo
 from src.dominio.cancion import Cancion  # Clase de dominio Cancion
 from src.dominio.biblioteca import Biblioteca
+from src.excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError
 
+def menu_coleccion(coleccion, pila_historial, cola_turnos):
+    """
+    Función interactiva para manipular las colecciones y estructuras del menú[cite: 1].
+    REGLA: Respeta el encapsulamiento y captura excepciones de forma específica[cite: 1].
+    """
+    while True:
+        print("\n--- Colección Principal ---")
+        print("1. Agregar elemento a la colección")
+        print("2. Listar colección")
+        print("3. Deshacer última acción (Pila)")
+        print("4. Atender siguiente turno (Cola)")
+        print("0. Volver")
+        
+        opcion = input("> ").strip()
+        
+        if opcion == "0":
+            break
+        elif opcion == "1":
+            nombre = input("Ingrese el nombre del elemento: ").strip()
+            # Captura específica al agregar en colección con tope[cite: 1]
+            try:
+                coleccion.agregar(nombre)
+                print(f"✓ Agregado con éxito: {nombre}")
+            except ColeccionLlenaError as e:
+                print(f"✗ Error de capacidad: {e}")[cite: 1]
+                
+        elif opcion == "2":
+            # Recorrido utilizando el iterador[cite: 1]
+            coleccion.listar()
+            
+        elif opcion == "3":
+            # Captura específica de excepción en la Pila[cite: 1]
+            try:
+                deshecho = pila_historial.desapilar()
+                print(f"✓ Se deshizo la acción: {deshecho}")
+            except PilaVaciaError as e:
+                print(f"✗ No se pudo desapilar: {e}")[cite: 1]
+                
+        elif opcion == "4":
+            # Captura específica de excepción en la Cola[cite: 1]
+            try:
+                atendido = cola_turnos.desencolar()
+                print(f"✓ Turno atendido: {atendido}")
+            except ColaVaciaError as e:
+                print(f"✗ No se pudo desencolar: {e}")[cite: 1]
 def listar_catalogo(biblioteca: Biblioteca) -> None:
     """
     Función de interfaz de usuario: solicita el catálogo a la biblioteca
