@@ -7,21 +7,21 @@ from src.excepciones import ColeccionLlenaError
 class Biblioteca:
     """
     Colección principal del dominio de Música con límite de capacidad (tope)[cite: 1].
-    Utiliza internamente la estructura `ListaEnlazada` propia[cite: 1].
+    Utiliza internamente la estructura ListaEnlazada propia[cite: 1].
     """
     def __init__(self, tope=6):
-        # Lista enlazada propia para almacenar los objetos canción o títulos[cite: 1]
+        # Lista enlazada propia para almacenar canciones[cite: 1]
         self._canciones = ListaEnlazada()
         # Límite máximo de elementos permitido[cite: 1]
         self._tope = tope
 
     def agregar(self, cancion):
         """
-        Agrega una nueva canción a la biblioteca/playlist[cite: 1].
-        Lanza `ColeccionLlenaError` si se alcanza el tope máximo[cite: 1].
+        Agrega una nueva canción a la biblioteca[cite: 1].
+        Lanza ColeccionLlenaError si se alcanza el tope máximo[cite: 1].
         """
         if self._canciones.tamanio() >= self._tope:
-            raise ColeccionLlenaError(f"La playlist / biblioteca está llena (máximo {self._tope} canciones).")[cite: 1]
+            raise ColeccionLlenaError(f"La biblioteca está llena (máximo {self._tope} canciones).")[cite: 1]
         self._canciones.insertar_al_final(cancion)
 
     def eliminar(self, cancion):
@@ -29,9 +29,7 @@ class Biblioteca:
         self._canciones.eliminar(cancion)
 
     def listar(self):
-        """
-        Muestra todas las canciones de la biblioteca utilizando el iterador de ListaEnlazada[cite: 1].
-        """
+        """Muestra todas las canciones utilizando el iterador de ListaEnlazada[cite: 1]."""
         for cancion in self._canciones:
             print(f" - {cancion}")
 class Biblioteca:
