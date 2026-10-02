@@ -1,26 +1,19 @@
-class ListaEnlazada:
-    """TAD lista enlazada simple. No usar list de Python por debajo."""
+from src.tads.nodo import Nodo
 
+class ListaEnlazada:
+    """Estructura de datos lineal implementada con nodos enlazados."""
+    
     def __init__(self):
-        raise NotImplementedError
+        self._cabeza = None
+        self._cant = 0  # Mantener la cantidad nos permite len() en O(1)
 
     def esta_vacia(self):
-        raise NotImplementedError
+        """Devuelve True si la lista no contiene elementos."""
+        return self._cabeza is None
 
-    def tamanio(self):
-        raise NotImplementedError
-
-    def insertar_al_inicio(self, dato):
-        raise NotImplementedError
-
-    def insertar_al_final(self, dato):
-        raise NotImplementedError
-
-    def insertar_ordenado(self, dato, clave):
-        raise NotImplementedError
-
-    def eliminar(self, dato):
-        raise NotImplementedError
+    def __len__(self):
+        """Devuelve la cantidad de elementos en la lista en O(1)."""
+        return self._cant
 
     def buscar(self, dato):
         raise NotImplementedError
