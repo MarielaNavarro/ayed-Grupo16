@@ -1,7 +1,9 @@
-import csv            # Módulo para leer archivos CSV
-from pathlib import Path    # Manejo de rutas del sistema operativo
-from src.dominio.cancion import Cancion  # Clase de dominio Cancion
+import csv
+from pathlib import Path
+from src.dominio.cancion import Cancion
 from src.dominio.biblioteca import Biblioteca
+from src.excepciones import ArchivoInvalidoError, ElementoNoEncontradoError
+
 
 def listar_catalogo(biblioteca: Biblioteca) -> None:
     """
@@ -9,8 +11,8 @@ def listar_catalogo(biblioteca: Biblioteca) -> None:
     y lo imprime formateado en forma de tabla por la consola.
     """
     canciones = biblioteca.listar()
-    
-    if not canciones:
+
+    if canciones.esta_vacia():
         print("\nLa biblioteca está vacía.")
         return
 
@@ -23,6 +25,7 @@ def listar_catalogo(biblioteca: Biblioteca) -> None:
 
     print("=" * 70)
 
+
 def ver_detalle_cancion(biblioteca: Biblioteca) -> None:
     """
     Función de interfaz de usuario: captura el input del usuario para buscar 
@@ -34,45 +37,53 @@ def ver_detalle_cancion(biblioteca: Biblioteca) -> None:
         print("Búsqueda cancelada: entrada vacía.")
         return
 
-    encontrada = biblioteca.buscar_por_id_o_titulo(busqueda)
-
-    if encontrada:
+    try:
+        encontrada = biblioteca.buscar_por_id_o_titulo(busqueda)
         print("\n" + encontrada.mostrar_ficha_detalle())
-        
-        # --- NUEVO: Invocamos la función recursiva del dominio para las versiones ---
+
+        # Invocamos la función recursiva del dominio para las versiones
         versiones_ids = biblioteca.listar_todas_las_versiones(encontrada.id)
-        if versiones_ids:
-            print(f"-> Versiones derivadas (IDs): {versiones_ids}")
+        
+        if not versiones_ids.esta_vacia():
+            ids_lista = [str(v_id) for v_id in versiones_ids]
+            print(f"-> Versiones derivadas (IDs): [{', '.join(ids_lista)}]")
         else:
             print("-> No registra versiones derivadas (Caso base alcanzado).")
-    else:
-        print(f"No se encontró ninguna canción con el criterio: '{busqueda}'.")
+
+    except ElementoNoEncontradoError as e:
+        print(f"\nError: {e}")
+
 
 def mostrar_menu() -> None:
     """Imprime por consola las opciones disponibles del menú principal del sistema."""
     print("\n╔══════════════════════════════════════════╗")
-    print("║     BIBLIOTECA MUSICAL - CLI (E2)        ║")
+    print("║      BIBLIOTECA MUSICAL - CLI (E3)       ║")
     print("╠══════════════════════════════════════════╣")
     print("║ 1. Listar canciones del catálogo         ║")
     print("║ 2. Ver detalle de una canción            ║")
     print("║ 3. Salir                                 ║")
     print("╚══════════════════════════════════════════╝")
 
+
 def main() -> None:
     """
     Punto de entrada principal de la aplicación. 
     """
     directorio_actual = Path(__file__).parent
-    
+
     # Rutas hacia los archivos CSV en la carpeta data/
     ruta_csv = directorio_actual.parent / "data" / "canciones.csv"
-    ruta_versiones_csv = directorio_actual.parent / "data" / "versiones.csv"  # <--- NUEVO
+    ruta_versiones_csv = directorio_actual.parent / "data" / "versiones.csv"
 
     biblioteca = Biblioteca()
-    biblioteca.cargar_desde_csv(ruta_csv)
-    biblioteca.cargar_versiones_desde_csv(ruta_versiones_csv)                  # <--- NUEVO
-    
-    print(f"Sistema iniciado. Se cargaron {len(biblioteca.listar())} canciones.")
+
+    try:
+        biblioteca.cargar_desde_csv(ruta_csv)
+        biblioteca.cargar_versiones_desde_csv(ruta_versiones_csv)
+        print(f"Sistema iniciado. Se cargaron {len(biblioteca.listar())} canciones en la ListaEnlazada.")
+    except ArchivoInvalidoError as e:
+        print(f"\nError crítico al iniciar la aplicación: {e}")
+        return
 
     while True:
         mostrar_menu()
@@ -84,9 +95,10 @@ def main() -> None:
             ver_detalle_cancion(biblioteca)
         elif opcion == "3":
             print("\n¡Gracias por utilizar la Biblioteca Musical!")
-            break 
+            break
         else:
             print("\nOpción inválida. Ingrese un número del 1 al 3.")
+
 
 if __name__ == "__main__":
     main()
