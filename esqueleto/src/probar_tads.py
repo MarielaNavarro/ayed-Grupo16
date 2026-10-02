@@ -62,7 +62,20 @@ def probar_cola():
     print(f"Nuevo frente (esperado 'Cliente 2'): {cola.ver_frente()}")
     print(f"Largo actual (esperado 2): {len(cola)}\n")
 
+def probar_excepciones():
+    print("--- PRUEBA EXCEPCIONES ---")
+    pila = Pila()
+    try:
+        pila.desapilar()
+    except PilaVaciaError as e:
+        print(f"✓ Excepción PilaVaciaError capturada con éxito: {e}")
 
+    cola = Cola()
+    try:
+        cola.desencolar()
+    except ColaVaciaError as e:
+        print(f"✓ Excepción ColaVaciaError capturada con éxito: {e}")
+    print()
 if __name__ == "__main__":
     probar_lista()
     probar_pila()
