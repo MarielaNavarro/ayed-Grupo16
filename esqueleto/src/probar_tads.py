@@ -80,3 +80,4 @@ if __name__ == "__main__":
     probar_lista()
     probar_pila()
     probar_cola()
+    probar_excepciones()
