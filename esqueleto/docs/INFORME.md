@@ -1,10 +1,11 @@
-Informe del TP
+# Informe de Desarrollo
 Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones claras y tablas.
 
 1. Grupo y tema
 Tema:Biblioteca musical
 Por qué lo eligieron (5–8 líneas): Elegimos el tema de la Biblioteca Musical porque fue la opción propuesta por la cátedra que generó un interés unánime y entusiasmó a los tres integrantes del equipo, brindándonos una temática motivadora para trabajar en conjunto.
-2. Modelo
+# - Entrega 2:
+3. Modelo
 Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacionan catálogo, colección principal, pila y cola. Atributos Inmutables (por diseño conceptual):
 
 Un ítem del catálogo es un objeto o entidad que representa una obra musical dentro del sistema (instancia de la clase Cancion). Encapsula todos los atributos representativos de un tema: identificador único (id), título (titulo), artista (artista), álbum (album), género (genero), año de lanzamiento (anio) y duración en segundos (duracion_seg).
@@ -93,24 +94,23 @@ Integrante	Qué hizo	Qué puede defender
 
 # Informe de Desarrollo - Entrega 3: TADs Lineales y Excepciones
 
-## 1. Justificación y Análisis de Complejidad Temporal
+## 1. Explicación del rendimiento de nuestras estructuras
 
-### ListaEnlazada (`src/tads/lista_enlazada.py`)
-* **`insertar_al_inicio` — $O(1)$**: Crea un `Nodo` y reconecta el puntero `_cabeza`. La operación no depende de la cantidad de elementos $n$.
-* **`insertar_al_final` — $O(n)$**: Recorre la lista desde `_cabeza` hasta el último nodo (`siguiente is None`) para añadir el nuevo nodo.
-* **`eliminar` — $O(n)$**: En el peor caso, recorre toda la lista para encontrar el elemento a desenganchar.
-* **`buscar` — $O(n)$**: Recorre los elementos uno a uno evaluando el criterio o dato solicitado.
-* **`__len__` — $O(1)$**: Mantiene un contador `_cant` que se incrementa o decrementa en cada modificación.
+### Lista Enlazada (`src/tads/lista_enlazada.py`)
+* **`insertar_al_inicio` (Inmediato / Un solo paso)**: No importa cuántas canciones o elementos haya cargados, agregar al principio lleva siempre el mismo tiempo. Solo requiere crear el nuevo nodo y engancharlo al comienzo de la lista[cite: 1].
+* **`insertar_al_final` (Requiere recorrer la lista)**: Para guardar un dato al final, tenemos que arrancar desde el primer nodo e ir saltando de uno en uno hasta llegar al último para poder engancharlo[cite: 1]. Cuantos más elementos hay en la lista, más tarda en llegar al final[cite: 1].
+* **`eliminar` (Requiere recorrer la lista)**: Para borrar un dato, la lista tiene que buscarlo revisando los nodos desde el principio hasta encontrarlo[cite: 1].
+* **`buscar` (Requiere recorrer la lista)**: Funciona revisando nodo por nodo desde el inicio hasta dar con el dato que coincida con lo que pedimos[cite: 1].
+* **`__len__` (Inmediato / Un solo paso)**: En vez de contar todos los nodos cada vez que preguntamos la cantidad, llevamos un contador interno que suma o resta 1 cada vez que agregamos o sacamos un elemento[cite: 1]. Por eso responder cuántos hay es instantáneo[cite: 1].
 
 ### Pila (`src/tads/pila.py`)
-* **`apilar` — $O(1)$**: Delega en `insertar_al_inicio` de `ListaEnlazada`.
-* **`desapilar` — $O(1)$**: Remueve y retorna el elemento en `_cabeza`.
-* **`ver_tope` — $O(1)$**: Consulta el valor contenido en `_cabeza.dato`.
+* **`apilar`, `desapilar` y `ver_tope` (Inmediatos)**: Como la pila trabaja únicamente con el elemento que está arriba del todo (el tope)[cite: 1], todas sus operaciones se resuelven en un solo paso trabajando sobre el inicio de la lista enlazada[cite: 1].
 
 ### Cola (`src/tads/cola.py`)
-* **`encolar` — $O(n)$**: Delega en `insertar_al_final` de `ListaEnlazada`.
-* **`desencolar` — $O(1)$**: Remueve y retorna el primer elemento (`_cabeza`).
-* **`ver_frente` — $O(1)$**: Consulta el valor contenido en `_cabeza.dato`.
+* **`encolar` (Requiere recorrer)**: Agrega los elementos al final de la lista enlazada, por lo que debe recorrerla toda hasta llegar al último lugar[cite: 1].
+* **`desencolar` y `ver_frente` (Inmediatos)**: Atiende o remueve siempre al primero de la fila, por lo que toma el dato directamente del inicio sin tener que recorrer nada[cite: 1].
 
-## 2. Estrategia de Manejo de Excepciones
-Se implementaron excepciones específicas (`ArchivoInvalidoError`, `ElementoNoEncontradoError`, `PilaVaciaError`, `ColaVaciaError`) heredando de `Exception`. Esto permite desacoplar los errores del dominio e impedimento de fallos catastróficos en la interfaz CLI, garantizando respuestas claras al usuario.
+## 2. Manejo de Errores (Excepciones)
+Creamos nuestras propias excepciones personalizadas (`ArchivoInvalidoError`, `ElementoNoEncontradoError`, `PilaVaciaError` y `ColaVaciaError`)[cite: 1]. 
+
+Hacemos esto para que, si el usuario escribe mal el nombre de una canción o falta un archivo CSV, el programa no se corte de golpe rompiendo la aplicación[cite: 1]. En su lugar, atajamos el error a tiempo y le mostramos un mensaje claro en la consola explicando qué pasó[cite: 1].
