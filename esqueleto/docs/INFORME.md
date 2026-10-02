@@ -97,20 +97,20 @@ Integrante	Qué hizo	Qué puede defender
 ## 1. Explicación del rendimiento de nuestras estructuras
 
 ### Lista Enlazada (`src/tads/lista_enlazada.py`)
-* **`insertar_al_inicio` (Inmediato / Un solo paso)**: No importa cuántas canciones o elementos haya cargados, agregar al principio lleva siempre el mismo tiempo. Solo requiere crear el nuevo nodo y engancharlo al comienzo de la lista[cite: 1].
-* **`insertar_al_final` (Requiere recorrer la lista)**: Para guardar un dato al final, tenemos que arrancar desde el primer nodo e ir saltando de uno en uno hasta llegar al último para poder engancharlo[cite: 1]. Cuantos más elementos hay en la lista, más tarda en llegar al final[cite: 1].
-* **`eliminar` (Requiere recorrer la lista)**: Para borrar un dato, la lista tiene que buscarlo revisando los nodos desde el principio hasta encontrarlo[cite: 1].
-* **`buscar` (Requiere recorrer la lista)**: Funciona revisando nodo por nodo desde el inicio hasta dar con el dato que coincida con lo que pedimos[cite: 1].
-* **`__len__` (Inmediato / Un solo paso)**: En vez de contar todos los nodos cada vez que preguntamos la cantidad, llevamos un contador interno que suma o resta 1 cada vez que agregamos o sacamos un elemento[cite: 1]. Por eso responder cuántos hay es instantáneo[cite: 1].
+* **`insertar_al_inicio` (Inmediato / Un solo paso)**: No importa cuántas canciones o elementos haya cargados, agregar al principio lleva siempre el mismo tiempo. Solo requiere crear el nuevo nodo y engancharlo al comienzo de la lista
+* **`insertar_al_final` (Requiere recorrer la lista)**: Para guardar un dato al final, tenemos que arrancar desde el primer nodo e ir saltando de uno en uno hasta llegar al último para poder engancharlo. Cuantos más elementos hay en la lista, más tarda en llegar al final
+* **`eliminar` (Requiere recorrer la lista)**: Para borrar un dato, la lista tiene que buscarlo revisando los nodos desde el principio hasta encontrarlo.
+* **`buscar` (Requiere recorrer la lista)**: Funciona revisando nodo por nodo desde el inicio hasta dar con el dato que coincida con lo que pedimos.
+* **`__len__` (Inmediato / Un solo paso)**: En vez de contar todos los nodos cada vez que preguntamos la cantidad, llevamos un contador interno que suma o resta 1 cada vez que agregamos o sacamos un elemento****. Por eso responder cuántos hay es instantáneo
 
 ### Pila (`src/tads/pila.py`)
-* **`apilar`, `desapilar` y `ver_tope` (Inmediatos)**: Como la pila trabaja únicamente con el elemento que está arriba del todo (el tope)[cite: 1], todas sus operaciones se resuelven en un solo paso trabajando sobre el inicio de la lista enlazada[cite: 1].
+* **`apilar`, `desapilar` y `ver_tope` (Inmediatos)**: Como la pila trabaja únicamente con el elemento que está arriba del todo (el tope), todas sus operaciones se resuelven en un solo paso trabajando sobre el inicio de la lista enlazada
 
 ### Cola (`src/tads/cola.py`)
-* **`encolar` (Requiere recorrer)**: Agrega los elementos al final de la lista enlazada, por lo que debe recorrerla toda hasta llegar al último lugar[cite: 1].
-* **`desencolar` y `ver_frente` (Inmediatos)**: Atiende o remueve siempre al primero de la fila, por lo que toma el dato directamente del inicio sin tener que recorrer nada[cite: 1].
+* **`encolar` (Requiere recorrer)**: Agrega los elementos al final de la lista enlazada, por lo que debe recorrerla toda hasta llegar al último lugar.
+* **`desencolar` y `ver_frente` (Inmediatos)**: Atiende o remueve siempre al primero de la fila, por lo que toma el dato directamente del inicio sin tener que recorrer nada.
 
 ## 2. Manejo de Errores (Excepciones)
-Creamos nuestras propias excepciones personalizadas (`ArchivoInvalidoError`, `ElementoNoEncontradoError`, `PilaVaciaError` y `ColaVaciaError`)[cite: 1]. 
+Creamos nuestras propias excepciones personalizadas (`ArchivoInvalidoError`, `ElementoNoEncontradoError`, `PilaVaciaError` y `ColaVaciaError`). 
 
-Hacemos esto para que, si el usuario escribe mal el nombre de una canción o falta un archivo CSV, el programa no se corte de golpe rompiendo la aplicación[cite: 1]. En su lugar, atajamos el error a tiempo y le mostramos un mensaje claro en la consola explicando qué pasó[cite: 1].
+Hacemos esto para que, si el usuario escribe mal el nombre de una canción o falta un archivo CSV, el programa no se corte de golpe rompiendo la aplicación. En su lugar, atajamos el error a tiempo y le mostramos un mensaje claro en la consola explicando qué pasó.
