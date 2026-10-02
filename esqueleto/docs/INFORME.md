@@ -90,3 +90,27 @@ Header:
 Cómo se actualiza un registro por posición:
 7. Reparto de trabajo (E6)
 Integrante	Qué hizo	Qué puede defender
+
+# Informe de Desarrollo - Entrega 3: TADs Lineales y Excepciones
+
+## 1. Justificación y Análisis de Complejidad Temporal
+
+### ListaEnlazada (`src/tads/lista_enlazada.py`)
+* **`insertar_al_inicio` — $O(1)$**: Crea un `Nodo` y reconecta el puntero `_cabeza`. La operación no depende de la cantidad de elementos $n$.
+* **`insertar_al_final` — $O(n)$**: Recorre la lista desde `_cabeza` hasta el último nodo (`siguiente is None`) para añadir el nuevo nodo.
+* **`eliminar` — $O(n)$**: En el peor caso, recorre toda la lista para encontrar el elemento a desenganchar.
+* **`buscar` — $O(n)$**: Recorre los elementos uno a uno evaluando el criterio o dato solicitado.
+* **`__len__` — $O(1)$**: Mantiene un contador `_cant` que se incrementa o decrementa en cada modificación.
+
+### Pila (`src/tads/pila.py`)
+* **`apilar` — $O(1)$**: Delega en `insertar_al_inicio` de `ListaEnlazada`.
+* **`desapilar` — $O(1)$**: Remueve y retorna el elemento en `_cabeza`.
+* **`ver_tope` — $O(1)$**: Consulta el valor contenido en `_cabeza.dato`.
+
+### Cola (`src/tads/cola.py`)
+* **`encolar` — $O(n)$**: Delega en `insertar_al_final` de `ListaEnlazada`.
+* **`desencolar` — $O(1)$**: Remueve y retorna el primer elemento (`_cabeza`).
+* **`ver_frente` — $O(1)$**: Consulta el valor contenido en `_cabeza.dato`.
+
+## 2. Estrategia de Manejo de Excepciones
+Se implementaron excepciones específicas (`ArchivoInvalidoError`, `ElementoNoEncontradoError`, `PilaVaciaError`, `ColaVaciaError`) heredando de `Exception`. Esto permite desacoplar los errores del dominio e impedimento de fallos catastróficos en la interfaz CLI, garantizando respuestas claras al usuario.
