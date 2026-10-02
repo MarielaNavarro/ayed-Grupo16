@@ -12,10 +12,10 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 | P02 | E1 | Elegir un ítem inexistente | id = -1 | mensaje claro, el menú sigue | exitoso  | al presionar un numero distinto a al rango del 1 al 3 nos envía un mensaje "Opción inválida. Ingrese un número del 1 al 3."  |
 | P03 | E2 | Operación recursiva sobre un ítem con cadena | ver consigna §3.3 | imprime la cadena completa | Exitoso  Imprime la cadena completa de versiones derivadas.| Recorre  correctamente el archivo versiones.csv usando la función recursiva del dominio.  |
 | P04 | E2 | Operación recursiva sobre un ítem sin derivados |  | solo el ítem (caso base) | Exitoso  Devuelve lista vacía / caso base alcanzado.  | El caso base corta la recursión de forma limpia sin generar errores ni bucles infinitos. |
-| P05 | E3 | Agregar a la colección principal hasta el tope | equipo de 6 / equivalente | el séptimo falla con excepción propia |  |  |
-| P06 | E3 | Desapilar historial vacío | pila vacía | excepción propia, menú sigue |  |  |
-| P07 | E3 | Desencolar cola vacía | cola vacía | excepción propia, menú sigue |  |  |
-| P08 | E3 | Listar colección con el iterador | 2+ ítems | el orden coincide con las inserciones |  |  |
+| P05 | E3 | Agregar a la colección principal hasta el tope | equipo de 6 / equivalente | el séptimo falla con excepción propia | Exitoso | Al intentar agregar un séptimo elemento habiendo alcanzado la capacidad máxima, se lanza ColeccionLlenaError sin romper el programa. |
+| P06 | E3 | Desapilar historial vacío | pila vacía | excepción propia, menú sigue | Exitoso | Se intenta desapilar de la Pila sin elementos; se captura PilaVaciaError adecuadamente y el menú continúa activo. |
+| P07 | E3 | Desencolar cola vacía | cola vacía | excepción propia, menú sigue | Exitoso | Se intenta desencolar de la Cola sin elementos; se captura ColaVaciaError devolviendo un mensaje claro sin interrumpir el menú. |
+| P08 | E3 | Listar colección con el iterador | 2+ ítems | el orden coincide con las inserciones | Exitoso | Al recorrer la ListaEnlazada usando el bucle for (método __iter__), se imprimen todos los elementos en el orden exacto en que fueron insertados. |
 | P09 | E4 | Búsqueda lineal de un nombre que existe |  | lo encuentra |  |  |
 | P10 | E4 | Búsqueda lineal de un nombre que no existe |  | no encontrado, sin traceback |  |  |
 | P11 | E4 | Búsqueda binaria con catálogo desordenado |  | avisa o reordena; no da un falso hit |  |  |
